@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>练习</title>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="first">
+        <input id="myDir" type="text" v-aa v-model="name">
+        <input id="myDir" type="text" v-model="age" @keyup.up="add">
+        <button v-on:click="add">添加</button>
+        <input id="myDir" type="text" v-model="keyword">
+        <button v-on:click="search(keyword)">搜索</button>
+
+        <transition-group tag="ul">
+            <li v-for="(to,index) in todos" key="index">
+                {{to.name}} {{to.age}} {{new Date() | moshi }}
+                <button v-on:click="cc(index)">删除</button>
+            </li>
+        </transition-group>
+    </div>
+    <script src="./node_modules/_vue@2.6.10@vue/dist/vue.js">
+    </script>
+    <script>
+        Vue.filter('moshi', function(cc) {
+            var hour = cc.getFullYear()
+            var moth = cc.getMonth()
+            var day = cc.getDate()
+            return hour + '-' + moth + '-' + day
+        })
+
+        Vue.directive('aa', {
+            inserted: function(el) {
+                el.focus();
+            }
+        })
+
+        var app = new Vue({
+            el: "#first",
+            data: {
+                id: '',
+                keyword: '',
+                name: '',
+                age: '',
+                todos: [{
+                    name: 'jo',
+                    age: 12
+                }, {
+                    name: 'xia',
+                    age: 15
+                }]
+            },
+            methods: {
+                add() {
+                    var id = {
+                        name: this.name,
+                        age: this.age
+                    }
+                    this.todos.push(id)
+                },
+                cc(a) {
+                    var ww = this.todos.splice(a, 1)
+                },
+                search(keyword) {
+                    var lists = []
+                    this.todos.forEach(cc => {
+                        if (cc.name.indexOf(keyword) != -1) {
+                            lists.push(cc)
+                        }
+                        console.log(lists)
+                        return lists
+                    });
+                }
+            },
+            computed: {
+
+
+            }
+        })
+    </script>
+</body>
+
+</html>

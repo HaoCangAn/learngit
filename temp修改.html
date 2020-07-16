@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xiugai</title>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tai">
+
+
+        <muban @pp='getload'></muban>
+
+
+        <ul>
+            <transition-group>
+                <li v-for="ll in lists" :key='ll.id'>
+                    {{ll.id}}- - {{ll.name}}- -{{ll.say}}
+                </li>
+            </transition-group>
+        </ul>
+
+    </div>
+
+    <template id="teml">
+     <div>
+        <div><h4>发言人：</h4>
+        <input type="text" value=" "  v-model="user"></div>
+        <div>
+        <h4>评论内容：</h4>
+        <input type="text" value=" " v-model="spake" @keydown.enter="update"></div>
+        <div>
+        <input type="button" value="发表" @click="update"></div>
+
+        
+    </div>
+    </template>
+
+    <script src="./node_modules/_vue@2.6.10@vue/dist/vue.js">
+    </script>
+    <script>
+        var cc = {
+            template: '#teml',
+            data() {
+                return {
+                    user: '',
+                    spake: ''
+                }
+            },
+            methods: {
+                update() {
+                    var cdd = {
+                        id: Date.now(),
+                        name: this.user,
+                        say: this.spake
+                    }
+                    var list = JSON.parse(localStorage.getItem('aa') || '[]')
+                    list.unshift(cdd)
+                    localStorage.setItem('aa', JSON.stringify(list))
+
+                    this.$emit('pp')
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: "#tai",
+            data: {
+                i: '1',
+                lists: [{
+                    id: Date.now(),
+                    name: '小小',
+                    say: '你好'
+                }]
+            },
+            created() {
+                console.log(this.lists)
+                this.getload()
+            },
+            methods: {
+                getload() {
+                    var lis = JSON.parse(localStorage.getItem('aa') || '[]')
+                    this.lists = lis
+                }
+            },
+            computed: {},
+            components: {
+                'muban': cc
+            }
+        })
+    </script>
+</body>
+
+</html>

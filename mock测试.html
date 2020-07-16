@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>练习</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="t">
+
+    </div>
+    <script src="./node_modules/_vue@2.6.10@vue/dist/vue.js"></script>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+          var data = Mock.mock( {
+
+        "userInfo|50": [{    //生成|num个如下格式名字的数据
+        "id|+1": 1,  //数字从当前数开始后续依次加一
+        "name": "@cname",    //名字为随机中文名字
+        "age|18-32": 25,    //年龄为18-28之间的随机数字
+        "sex|1": ["男", "女"],    //性别是数组中的一个，随机的
+        "job|1": ["web", "UI", "python", "php","java","c++"]    //工作是数组中的一个
+        }]
+
+})
+
+// 输出结果
+console.log(data.uesrInfo)
+// console.log(JSON.stringify(data, null, 10))
+
+// $.get('https://www.test.com', function (data) {
+
+// console.log(JSON.parse(data));
+// for (var i=0;i<JSON.parse(data).userInfo.length;i++){
+//   document.write('ID：'+JSON.parse(data).userInfo[i].id+'<br>')
+//   document.write('姓名：'+JSON.parse(data).userInfo[i].name+'<br>')
+//   document.write('年龄：'+JSON.parse(data).userInfo[i].age+'<br>')
+//   document.write('性别：'+JSON.parse(data).userInfo[i].sex+'<br>')
+//   document.write('专业：'+JSON.parse(data).userInfo[i].job+'<br>')
+//   document.write('--------------------------------------'+'<br>')
+// }
+
+
+// })
+
+    
+        var app = new Vue({
+            el: "#t",
+            data: {
+                name: "mock",
+            },
+            methods: {
+
+            },
+            computed: {
+
+
+            }
+        })
+    </script>
+</body>
+
+</html>

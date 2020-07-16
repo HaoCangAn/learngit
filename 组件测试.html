@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件测试</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="temp01">
+        <my></my>
+        <button @click="compname='mymu'">登录</button>
+        <button @click="compname='my'">注册</button>
+        <component :is="compname"></component>
+    </div>
+
+    <template id="aa">
+        <h3>
+           登录
+       </h3>
+    </template>
+
+    <script src="./node_modules/_vue@2.6.10@vue/dist/vue.js">
+    </script>
+    <script>
+        // Vue.component('mymu', {
+        //     template: "#aa1",
+        //     data: function() {
+        //         return {
+        //             address: 'zougang'
+        //         }
+        //     }
+        // })
+
+        Vue.component('mymu', {
+            template: "#aa"
+        })
+        Vue.component('my', {
+            template: "<p>注册</p>"
+        })
+        var app = new Vue({
+            el: "#temp01",
+            data: {
+                fold: true,
+                compname: ''
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画</title>
+    <style>
+        /* .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="animation">
+        <button v-on:click="flod=!flod">开关</button>
+
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <p v-if="flod"> 移动</p>
+        </transition>
+
+    </div>
+    <script src="./node_modules/_vue@2.6.10@vue/dist/vue.js">
+    </script>
+    <script>
+        Vue.directive('aa', {
+            inserted: function(el) {
+                el.focus();
+            }
+        })
+
+
+        var app = new Vue({
+            el: "#animation",
+            data: {
+                flod: false
+            },
+            methods: {
+
+                beforeEnter(el) {
+                    el.style.transform = "translate(0,0)"
+                },
+                enter(el) {
+                    el.offsetLeft
+                    el.style.transform = "translate(150px,450px)"
+                    el.style.transition = 'all 0.8s ease'
+                },
+                afterEnter(el) {
+                    this.flod = false
+                }
+            },
+            computed: {}
+        })
+    </script>
+</body>
+
+</html>

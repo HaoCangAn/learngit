@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>练习</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <h1>这是父组件</h1>
+        // 存放在父组件中的子组件模板
+        <child>
+            <div>菜单一</div>
+            <div>菜单二</div>
+            <div>菜单三</div>
+        </child>
+        
+    </div>
+    
+    //  使用子组件
+    <template id="child">
+    
+        // 只能存在一个根路径
+        <div>
+            <h2>这是子组件</h2>
+            //  slot是内置的组件 , 只有添加slot才能在页面看到父组件中child标签中的数据
+            <!-- <slot></slot> -->
+        </div>
+        
+    </template>
+    <script src="./node_modules/_vue@2.6.10@vue/dist/vue.js">
+    </script>
+    <script>
+        // 创建child子组件
+        let child = {
+            // 使用# id名进行关联
+            template:"#child"
+        }
+    
+        // Vue的实例
+        let vm = new Vue({
+            el:"#app",
+            data:{
+    
+            },
+            // 注册组件
+            components:{
+                child
+            }
+        })
+    </script>
+
+    
+ 
+</body>
+
+</html>
